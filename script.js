@@ -143,13 +143,34 @@ function onClick(){
 
     // Kondisi penentuan hasil prediksi berdasarkan nilai score
     if (index == 0) {
-        alert('Bisnis');
+        swal("Judul yang anda masukan termasuk kategori BISNIS");
+        let msg = new SpeechSynthesisUtterance();
+        msg.lang = "id"
+        msg.rate = 10
+        msg.text = "Judul yang anda masukan termasuk kategori bisnis";
+        window.speechSynthesis.speak(msg);
     } else if(index == 1)  {
-        alert('Kesehatan');
+        swal("Judul yang anda masukan termasuk kategori KESEHATAN");
+        let msg = new SpeechSynthesisUtterance();
+        msg.lang = "id"
+        msg.rate = 10
+        msg.text = "Judul yang anda masukan termasuk kategori kesehatan";
+        window.speechSynthesis.speak(msg);
     }else if(index == 2){
-        alert('Teknologi');
+        swal("Judul yang anda masukan termasuk kategori TEKNOLOGI");
+        let msg = new SpeechSynthesisUtterance();
+        msg.lang = "id"
+        msg.rate = 10
+        msg.text = "Judul yang anda masukan termasuk kategori teknologi";
+        window.speechSynthesis.speak(msg);
     }else{
         alert('Maaf kategori tidak ditemukan')
+        let msg = new SpeechSynthesisUtterance();
+        msg.lang = "id"
+        msg.rate = 10
+        window.speechSynthesis.speak(msg);
+        msg.text = "Maaf kategori tidak ditemukan";
+        
     }
 }
 // -----------------------------------
@@ -160,15 +181,34 @@ async function init(){
  
     // Memanggil model tfjs
     // model = await tf.loadLayersModel('http://127.0.0.1:5500/tfjs_model/model.json'); // Untuk VS Code Live Server
-    model = await tf.loadLayersModel('https://twin-ai.netlify.app/tfjs_model/model.json');
+    model = await tf.loadLayersModel('http://127.0.0.1:8887/tfjs_model/model.json');
     isModelLoaded = true;
  
     //Memanggil word_index
     // const word_indexjson = await fetch('http://127.0.0.1:5500/word_index.json'); // Untuk VS Code Live Server
-    const word_indexjson = await fetch('https://twin-ai.netlify.app/word_index.json');
+    const word_indexjson = await fetch('http://127.0.0.1:8887/word_index.json');
     word2index = await word_indexjson.json();
  
     console.log(model.summary());
     console.log('Model & Metadata Loaded Successfully');
 }
 // -----------------------------------
+
+const GetSpeech = () => {
+    console.log("clicked microphone");
+    const SpeechRecognition =  window.SpeechRecognition || window.webkitSpeechRecognition;
+   
+    let recognition = new SpeechRecognition();
+recognition.onstart = () => {
+            console.log("starting listening, speak in microphone");
+        }
+        recognition.onspeechend = () => {
+            console.log("stopped listening");
+            recognition.stop();
+        }
+        recognition.onresult = (result) => {
+            console.log(result.results[0][0].transcript);
+         }
+     
+         recognition.start();
+}
