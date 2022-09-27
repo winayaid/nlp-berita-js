@@ -151,32 +151,32 @@ function onClick() {
     swal("Judul yang anda masukan termasuk kategori BISNIS");
     let msg = new SpeechSynthesisUtterance();
     msg.lang = "id";
-    msg.rate = 1;
-    msg.volume = 1;
+    // msg.rate = 1;
+    // msg.volume = 1;
     msg.text = "Judul yang anda masukan termasuk kategori bisnis";
     window.speechSynthesis.speak(msg);
   } else if (index == 1) {
     swal("Judul yang anda masukan termasuk kategori KESEHATAN");
     let msg = new SpeechSynthesisUtterance();
     msg.lang = "id";
-    msg.rate = 1;
-    msg.volume = 1;
+    // msg.rate = 1;
+    // msg.volume = 1;
     msg.text = "Judul yang anda masukan termasuk kategori kesehatan";
     window.speechSynthesis.speak(msg);
   } else if (index == 2) {
     swal("Judul yang anda masukan termasuk kategori TEKNOLOGI");
     let msg = new SpeechSynthesisUtterance();
     msg.lang = "id";
-    msg.rate = 1;
-    msg.volume = 1;
+    // msg.rate = 1;
+    // msg.volume = 1;
     msg.text = "Judul yang anda masukan termasuk kategori teknologi";
     window.speechSynthesis.speak(msg);
   } else {
     alert("Maaf kategori tidak ditemukan");
     let msg = new SpeechSynthesisUtterance();
     msg.lang = "id";
-    msg.rate = 1;
-    msg.volume = 1;
+    // msg.rate = 1;
+    // msg.volume = 1;
     window.speechSynthesis.speak(msg);
     msg.text = "Maaf kategori tidak ditemukan";
   }
